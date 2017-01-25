@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>JavaScript Game!</title>
+		<link rel="stylesheet" type="text/css" href="css/JS_FirstGame.css" />
+	</head>
+
+	<body>
+		<h1>My first JS Game!</h1>
+		<h2>Created by, Roscoe CHS 12/5/16</h2>
+		<br>
+		<hr>
+		<br>
+		<div align="center">
+			<canvas id="myCanvas" width="600" height="400"></canvas>
+		</div>
+		<script>
+			//
+			// field vars: -- can be used *everywhere* in your program
+			var xR = 295;
+			var yR = 10;
+			var wR = 20;
+			var hR = 30;
+			var stepSizeR = 2;
+			var xB = 10;
+			var yB = 195;
+			var wB = 30;
+			var hB = 20;
+			var stepSizeB = 4;
+			// illusion of speed, but only the "x step size"
+			//
+			var canvas = document.getElementById("myCanvas");
+			var ctx = canvas.getContext("2d");
+
+			var update = function() {
+
+				if (xB >= 580) {
+					xB = 580;
+					stepSizeB = -stepSizeB;
+				} else if (xB <= 5) {
+					xB = 5;
+					stepSizeB = -stepSizeB;
+				}
+				if (yR >= 380) {
+					yR = 380;
+					stepSizeR = -stepSizeR;
+				} else if (yR <= 5) {
+					yR = 5;
+					stepSizeR = -stepSizeR;
+				}
+
+				xB = xB + stepSizeB;
+				yR = yR + stepSizeR;
+
+				//console.log(x);
+
+			};
+
+			var draw = function() {
+
+				ctx.clearRect(0, 0, 600, 400);
+				ctx.fillStyle = "rgba(255 ,0 ,0, 0.5)";
+				ctx.fillRect(xR, yR, wR, hR);
+
+				ctx.fillStyle = "rgba(0 ,0 ,255, 0.5)";
+				ctx.fillRect(xB, yB, wB, hB);
+
+			};
+			//
+			var step = function() {
+				//
+				update();
+				draw();
+
+				window.requestAnimationFrame(step);
+				// AnimationFrame 30 fps, calling yourself: recursion
+			};
+			//
+			step();
+
+		</script>
+
+	</body>
+
+</html>
