@@ -1,0 +1,14 @@
+body{
+	background-color: #33FFcc;
+}
+
+canvas{
+	border: 5px groove purple;
+	background-color: white;
+}
+h1{
+	text-align: center;
+}
+h2{
+	text-align: center;
+}
